@@ -1,4 +1,4 @@
-﻿using Ordering.Domain.Abstractions;
-using Ordering.Domain.Enums;
-using Ordering.Domain.ValueObjects;
-using Ordering.Domain.Models;
+﻿global using Ordering.Domain.Abstractions;
+global using Ordering.Domain.Enums;
+global using Ordering.Domain.ValueObjects;
+global using Ordering.Domain.Models;
