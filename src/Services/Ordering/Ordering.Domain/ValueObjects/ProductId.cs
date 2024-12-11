@@ -6,14 +6,14 @@ public record ProductId
     
     private ProductId(Guid value) => Value = value;
 
-    public static ProductId Of(ProductId productId)
+    public static ProductId Of(Guid value)
     {
-        ArgumentNullException.ThrowIfNull(productId);
-        if (productId.Value == Guid.Empty)
+        ArgumentNullException.ThrowIfNull(value);
+        if (value == Guid.Empty)
         {
-            throw new ArgumentException("Product id is invalid", nameof(productId));
+            throw new ArgumentException("Product id is invalid", nameof(value));
         }
 
-        return new ProductId(productId.Value);
+        return new ProductId(value);
     }
 };
