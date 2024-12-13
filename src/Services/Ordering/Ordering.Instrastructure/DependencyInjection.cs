@@ -1,4 +1,7 @@
 ﻿
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Ordering.Instrastructure.Data.Interceptors;
+
 namespace Ordering.Instrastructure
 {
     public static class DependencyInjection
@@ -6,10 +9,14 @@ namespace Ordering.Instrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("Database");
-             
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString)
-            );
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+            services.AddDbContext<ApplicationDbContext>((sp, options) =>
+            {
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+                options.UseSqlServer(connectionString);
+            });
 
             return services;
         }
