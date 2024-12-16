@@ -52,6 +52,12 @@ public class Order : Aggregate<OrderId>
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
         
+        var existingItem = _orderItems.FirstOrDefault(x => x.ProductId == productId);
+        if (existingItem != null)
+        {
+            
+            return;
+        }
         var orderItem = new OrderItem(Id, productId, quantity, price);
         _orderItems.Add(orderItem);
     }
@@ -64,4 +70,5 @@ public class Order : Aggregate<OrderId>
             _orderItems.Remove(orderItem);
         }
     }
+    
 }

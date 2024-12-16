@@ -1,6 +1,4 @@
-﻿
-namespace Ordering.Domain.Models;
-
+﻿namespace Ordering.Domain.Models;
 public class OrderItem : Entity<OrderItemId>
 {
     internal OrderItem(OrderId orderId, ProductId productId, int quantity, decimal price)
@@ -16,5 +14,4 @@ public class OrderItem : Entity<OrderItemId>
     public ProductId ProductId { get; private set; } = default!;
     public int Quantity { get; private set; } = default!;
     public decimal Price { get; private set; } = default!;
-    
 }

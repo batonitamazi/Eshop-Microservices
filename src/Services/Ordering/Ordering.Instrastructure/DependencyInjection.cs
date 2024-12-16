@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Ordering.Application.Data;
 using Ordering.Instrastructure.Data.Interceptors;
 
 namespace Ordering.Instrastructure
@@ -17,7 +18,8 @@ namespace Ordering.Instrastructure
                 options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 options.UseSqlServer(connectionString);
             });
-
+            
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
     }

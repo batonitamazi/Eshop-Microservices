@@ -31,6 +31,7 @@ services:
   
   orderdb:
     container_name: orderdb
+    platform: linux/amd64
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=SwN12345678
