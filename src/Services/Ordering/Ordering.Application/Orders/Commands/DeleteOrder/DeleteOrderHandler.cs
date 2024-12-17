@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 
 namespace Ordering.Application.Orders.Commands.DeleteOrder;
 
