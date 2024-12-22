@@ -18,7 +18,7 @@ public class DeleteOrder : ICarterModule
             
             return Results.Ok(response);
         })
-        .WithName("CreateOrder")
+        .WithName("DeleteOrder")
         .Produces<DeleteOrderResponse>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status404NotFound)

@@ -12,8 +12,6 @@ public class GetOrders : ICarterModule
         app.MapGet("/orders", async([AsParameters] PaginationRequest request, ISender Sender) =>
         {
             var result = await Sender.Send(new GetOrdersQuery(request));
-
-
             var response = result.Adapt<GetOrdersResponse>();
 
             return Results.Ok(response);
