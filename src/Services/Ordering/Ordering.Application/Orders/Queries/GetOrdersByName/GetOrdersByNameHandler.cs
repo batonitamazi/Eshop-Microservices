@@ -15,7 +15,7 @@ public class GetOrdersByNameHandler(IApplicationDbContext dbContext) : IQueryHan
             
 
         
-        return new GetOrdersByNameResult(orders.ToOrderDtolist());
+        return new GetOrdersByNameResult(orders.ToOrderDtoList());
     }
 
     

@@ -15,6 +15,6 @@ public class GetOrdersByCustomerHandler(IApplicationDbContext dbContext) : IQuer
             .OrderBy(k => k.OrderName.Value)
             .ToListAsync(cancellationToken);
 
-        return new GetOrdersByCustomerResult(orders.ToOrderDtolist());
+        return new GetOrdersByCustomerResult(orders.ToOrderDtoList());
     }
 }
