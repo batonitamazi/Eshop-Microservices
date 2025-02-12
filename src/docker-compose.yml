@@ -47,8 +47,15 @@ services:
     build:
       context: .
       dockerfile: WebApps/Shopping.Web/Dockerfile
+  
+  nginx:
+    image: nginx:latest
+    
+    
 
 volumes:
   postgres_catalog:
   postgres_basket:
+  certbot_conf:
+  certbot_www:
 

@@ -16,6 +16,8 @@ builder.Services.AddRateLimiter(options =>
 
 var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
+app.MapGet("/meore", () => "chello World!");
+
 app.UseRateLimiter();
 app.MapReverseProxy();
 
