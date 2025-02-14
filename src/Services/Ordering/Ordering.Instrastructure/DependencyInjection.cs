@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Ordering.Application.Data;
 using Ordering.Instrastructure.Data.Interceptors;
@@ -22,5 +23,16 @@ namespace Ordering.Instrastructure
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
+
+        // public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
+        // {
+        //     using var scope = app.ApplicationServices.CreateScope();
+        //     var services = scope.ServiceProvider;
+        //     var dbContext = services.GetRequiredService<ApplicationDbContext>();
+        //     dbContext.Database.Migrate();
+        //
+        //     return app;
+        // }
     }
+    
 }

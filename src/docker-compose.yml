@@ -1,61 +1,62 @@
-services:
-  catalogdb:
-    image: postgres
-  basketdb:
-    image: postgres
-  distributedcache:
-    image: redis
+  services:
+    catalogdb:
+      image: postgres
+    basketdb:
+      image: postgres
+    distributedcache:
+      image: redis
+    
+    orderdb:
+      image: mcr.microsoft.com/mssql/server
+    
+    messagebroker:
+      image: rabbitmq:management
   
-  orderdb:
-    image: mcr.microsoft.com/mssql/server
+    catalogapi:
+      image: ${DOCKER_REGISTRY-}catalogapi
+      build:
+        context: .
+        dockerfile: Services/Catalog/CatalogAPI/Dockerfile
   
-  messagebroker:
-    image: rabbitmq:management
-
-  catalogapi:
-    image: ${DOCKER_REGISTRY-}catalogapi
-    build:
-      context: .
-      dockerfile: Services/Catalog/CatalogAPI/Dockerfile
-
-  basketapi:
-    image: ${DOCKER_REGISTRY-}basketapi
-    build:
-      context: .
-      dockerfile: Services/Basket/BasketAPI/Dockerfile
-
-  discount.grpc:
-    image: ${DOCKER_REGISTRY-}discountgrpc
-    build:
-      context: .
-      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
-
-  ordering.api:
-    image: ${DOCKER_REGISTRY-}orderingapi
-    build:
-      context: .
-      dockerfile: Services/Ordering/Ordering.API/Dockerfile
-
-  yarpapigatewaynew:
-    image: ${DOCKER_REGISTRY-}yarpapigatewaynew
-    build:
-      context: .
-      dockerfile: ApiGateways/YarpApiGatewayNew/Dockerfile
+    basketapi:
+      image: ${DOCKER_REGISTRY-}basketapi
+      build:
+        context: .
+        dockerfile: Services/Basket/BasketAPI/Dockerfile
+  
+    discount.grpc:
+      image: ${DOCKER_REGISTRY-}discountgrpc
+      build:
+        context: .
+        dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+  
+    ordering.api:
+      image: ${DOCKER_REGISTRY-}orderingapi
+      build:
+        context: .
+        dockerfile: Services/Ordering/Ordering.API/Dockerfile
+  
+    yarpapigatewaynew:
+      image: ${DOCKER_REGISTRY-}yarpapigatewaynew
+      build:
+        context: .
+        dockerfile: ApiGateways/YarpApiGatewayNew/Dockerfile
+        
+    shopping.web:
+      image: ${DOCKER_REGISTRY-}shoppingweb
+      build:
+        context: .
+        dockerfile: WebApps/Shopping.Web/Dockerfile
+    
+    nginx:
+      image: nginx:latest
       
-  shopping.web:
-    image: ${DOCKER_REGISTRY-}shoppingweb
-    build:
-      context: .
-      dockerfile: WebApps/Shopping.Web/Dockerfile
+      
   
-  nginx:
-    image: nginx:latest
-    
-    
-
-volumes:
-  postgres_catalog:
-  postgres_basket:
-  certbot_conf:
-  certbot_www:
-
+  volumes:
+    postgres_catalog:
+    postgres_basket:
+    certbot_conf:
+    certbot_www:
+    mssql_orderdb:
+  
